@@ -11,30 +11,27 @@ using B_BUS.View_Models;
 
 namespace B_BUS.Services
 {
-    public class QLMauSacViewServices :IQLMauSacViewServices
+    public class QLChucVuViewServices:IQLChucVuViewServices
     {
-        private IMauSacRepositories _MauSacRp;
-        private List<QLMauSacview> _ListMauView;
+        private IChucVureposiries _cvrp;
 
-        public QLMauSacViewServices()
+        public QLChucVuViewServices()
         {
-            _MauSacRp = new MauSacrepositories();
-            _ListMauView = new List<QLMauSacview>();
+            _cvrp = new ChucVuRepositories();
         }
-
-        public string Add(QLMauSacview khv)
+        public string Add(QLChucVuView khv)
         {
             //ADD
-            MauSac kh = new MauSac()
+            ChucVu kh = new ChucVu()
             {
                 Id = khv.Id,
-                MaMauSac = khv.MaMauSac,
-                TenMauSac = khv.TenMauSac,
+                MaChucVu = khv.MaChucVu,
+                TenChucVu = khv.TenChucVu,
                 TrangThai = khv.TrangThai,
 
 
             };
-            if (_MauSacRp.Add(kh))
+            if (_cvrp.Add(kh))
             {
                 return "thêm thành công";
             }
@@ -42,17 +39,17 @@ namespace B_BUS.Services
             return "thêm thất bại";
         }
 
-        public string Update(QLMauSacview khv)
+        public string Update(QLChucVuView khv)
         {
             //Update
-            var x = _MauSacRp.GetAll().FirstOrDefault(c => c.Id == khv.Id);
+            var x = _cvrp.GetAll().FirstOrDefault(c => c.Id == khv.Id);
             x.Id = khv.Id;
 
-            x.MaMauSac = khv.MaMauSac;
-            x.TenMauSac = khv.TenMauSac;
+            x.MaChucVu = khv.MaChucVu;
+            x.TenChucVu = khv.TenChucVu;
             x.TrangThai = khv.TrangThai;
 
-            if (_MauSacRp.Update(x))
+            if (_cvrp.Update(x))
             {
                 return "sửa thành công";
             }
@@ -62,8 +59,8 @@ namespace B_BUS.Services
         public string Delete(Guid idGuid)
         {
             //Delete
-            var x = _MauSacRp.GetAll().FirstOrDefault(c => c.Id == idGuid);
-            if (_MauSacRp.Delete(x))
+            var x = _cvrp.GetAll().FirstOrDefault(c => c.Id == idGuid);
+            if (_cvrp.Delete(x))
             {
                 return "Xóa Thành Công";
             }
@@ -71,15 +68,15 @@ namespace B_BUS.Services
             return "Xóa thất Bại";
         }
 
-        public List<QLMauSacview> Getall()
+        public List<QLChucVuView> Getall()
         {
             //Getall
-            return (from a in _MauSacRp.GetAll()
-                select new QLMauSacview()
+            return (from a in _cvrp.GetAll()
+                select new QLChucVuView()
                 {
                     Id = a.Id,
-                    MaMauSac = a.MaMauSac,
-                    TenMauSac = a.TenMauSac,
+                    MaChucVu = a.MaChucVu,
+                    TenChucVu = a.TenChucVu,
                     TrangThai = a.TrangThai,
 
                 }).ToList();
