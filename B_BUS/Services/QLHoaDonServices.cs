@@ -57,7 +57,7 @@ namespace B_BUS.Services
                 TrangThai = khv.TrangThaiHD
 
             };
-            if (_IHoaDonRepositories.Update(b))) return "sửa thành công";
+            if (_IHoaDonRepositories.Update(b)) return "sửa thành công";
             return "sửa thành công";
         }
 
@@ -77,7 +77,7 @@ namespace B_BUS.Services
                 TrangThai = khv.TrangThaiHD
 
             };
-            if (_IHoaDonRepositories.Delete(b))) return "xóa thành công";
+            if (_IHoaDonRepositories.Delete(b)) return "xóa thành công";
             return "xóa thành công";
         }
 
